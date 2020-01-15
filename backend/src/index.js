@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const routes = require('./routes');
 
 const app = express();
 
@@ -9,6 +10,7 @@ mongoose.connect('mongodb+srv://omnistack:KGMHclJRzTGCenoG@cluster0-lr1jq.mongod
 });
 
 app.use(express.json());
+app.use(routes);
 
 // Métodos HTTP: GET, POST, PUT, DELETE
 
@@ -19,23 +21,6 @@ app.use(express.json());
 
 // MongoDB (banco não relacional)
 
-app.get('/', (request, response) => {
-    return response.json({ message: "Página inicial" });
-});
 
-app.get('/users', (request, response) => {
-    console.log(request.query);
-    return response.json({ message: "Buscando usuários" });
-});
-
-app.delete('/users/:id', (request, response) => {
-    console.log(request.params);
-    return response.json({ message: "Deletando usuários" });
-});
-
-app.post('/users', (request, response) => {
-    console.log(request.body);
-    return response.json({ message: "Criando usuário" });
-});
 
 app.listen(3333)
