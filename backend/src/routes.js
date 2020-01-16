@@ -1,6 +1,5 @@
 const { Router } = require('express');
-const axios = require('axios');
-const developer = require('./models/developer')
+const developerController = require('./controllers/developerController')
 
 const routes = Router();
 
@@ -23,28 +22,6 @@ routes.post('/users', (request, response) => {
     return response.json({ message: "Criando usuário" });
 });
 
-routes.post('/devs', async (request, response) => {
-    console.log(request.body);
-
-    const { github_username, techs } = request.body;
-
-    const apiResponse = await axios.get(`http://api.github.com/users/${github_username}`);
-
-    const techsArray = techs.split(',').map(tech => tech.trim());
-
-    const { name = login, avatar_url, bio } = apiResponse.data;
-
-    console.log(name, avatar_url, bio, github_username, techsArray);
-
-    const dev = await developer.create({
-        name,
-        avatar_url,
-        bio,
-        github_username,
-        techs: techsArray
-    });
-
-    return response.json(dev);
-});
+routes.post('/devs', developerController.store);
 
 module.exports = routes;
