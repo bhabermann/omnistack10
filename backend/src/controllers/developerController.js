@@ -2,6 +2,11 @@ const axios = require('axios');
 const developer = require('../models/developer')
 
 module.exports = {
+    async index(request, response) {
+        const devs = await developer.find();
+        response.json(devs);
+    },
+
     async store(request, response) {
         console.log(request.body);
     

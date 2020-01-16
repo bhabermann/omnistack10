@@ -23,5 +23,6 @@ routes.post('/users', (request, response) => {
 });
 
 routes.post('/devs', developerController.store);
+routes.get('/devs', developerController.index);
 
 module.exports = routes;
