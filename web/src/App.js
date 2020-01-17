@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './global.css';
+
 // Principais conceitos do React
 // Componente: Bloco isolado de html, css e js que não interfere no restante da aplicação.
 // Propriedade: Informações que um componente pai passa pra um componente filho
@@ -14,7 +16,7 @@ function App() {
 
       </aside>
       <main>
-        
+
       </main>
     </div>
   );
