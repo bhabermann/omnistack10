@@ -3,6 +3,7 @@ import React from 'react';
 import './global.css';
 import './App.css'
 import './Sidebar.css'
+import './Main.css'
 
 // Principais conceitos do React
 // Componente: Bloco isolado de html, css e js que não interfere no restante da aplicação.
@@ -43,7 +44,52 @@ function App() {
         </form>
       </aside>
       <main>
-
+        <ul>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/7130275?s=460&v=4" alt="Bruno Habermann"/>
+              <div className="user-info">
+                <strong>Bruno Habermann</strong>
+                <span>.Net, React, SQL Server</span>
+              </div>
+            </header>
+            <p>Bio do github com várias informações aleatórias só pra ficar com textão aqui e ver o comportamento do componente</p>
+            <a href="https://github.com/bhabermann">Acessar perfil do Github</a>
+          </li>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/7130275?s=460&v=4" alt="Bruno Habermann"/>
+              <div className="user-info">
+                <strong>Bruno Habermann</strong>
+                <span>.Net, React, SQL Server</span>
+              </div>
+            </header>
+            <p>Bio do github com várias informações aleatórias só pra ficar com textão aqui e ver o comportamento do componente</p>
+            <a href="https://github.com/bhabermann">Acessar perfil do Github</a>
+          </li>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/7130275?s=460&v=4" alt="Bruno Habermann"/>
+              <div className="user-info">
+                <strong>Bruno Habermann</strong>
+                <span>.Net, React, SQL Server</span>
+              </div>
+            </header>
+            <p>Bio do github com várias informações aleatórias só pra ficar com textão aqui e ver o comportamento do componente</p>
+            <a href="https://github.com/bhabermann">Acessar perfil do Github</a>
+          </li>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/7130275?s=460&v=4" alt="Bruno Habermann"/>
+              <div className="user-info">
+                <strong>Bruno Habermann</strong>
+                <span>.Net, React, SQL Server</span>
+              </div>
+            </header>
+            <p>Bio do github com várias informações aleatórias só pra ficar com textão aqui e ver o comportamento do componente</p>
+            <a href="https://github.com/bhabermann">Acessar perfil do Github</a>
+          </li>
+        </ul>
       </main>
     </div>
   );
