@@ -1,24 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+// Principais conceitos do React
+// Componente: Bloco isolado de html, css e js que não interfere no restante da aplicação.
+// Propriedade: Informações que um componente pai passa pra um componente filho
+// Estado: Informações mantidas pelo componente. (Imutabilidade)
+
+// A tag vazia <> é chamada de "fragment" e serve para agrupar vários tags sem ter um tag sendo exibido no navegador
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app">
+      <aside>
+
+      </aside>
+      <main>
+        
+      </main>
     </div>
   );
 }
