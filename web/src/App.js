@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './global.css';
 import './App.css'
@@ -13,6 +13,30 @@ import './Main.css'
 // A tag vazia <> é chamada de "fragment" e serve para agrupar vários tags sem ter um tag sendo exibido no navegador
 
 function App() {
+  const [github_username, setGithubUsername] = useState('');
+  const [techs, setTechs] = useState('');
+
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+
+        setLatitude(latitude);
+        setLongitude(longitude);
+        console.log(position);
+      },
+      (error) => {
+        console.log(error);
+      },
+      {
+        timeout: 30000
+      }
+    );
+  }, []);
+
   return (
     <div id="app">
       <aside>
@@ -20,23 +44,49 @@ function App() {
         <form>
           <div className="input-block">
             <label htmlFor="github_username">Usuário do Github</label>
-            <input name="github_username" id="github_username" required></input>
+            <input 
+              name="github_username" 
+              id="github_username" 
+              required
+              value={github_username}
+              onChange={e => setGithubUsername(e.target.valeu)}              
+            />
           </div>
 
           <div className="input-block">
             <label htmlFor="techs">Tecnologias</label>
-            <input name="techs" id="techs" required></input>
+            <input 
+              name="techs" 
+              id="techs" 
+              required
+              value={techs}
+              onChange={e => setTechs(e.target.valeu)}
+            />
           </div>
 
           <div className="input-group">
             <div className="input-block">
               <label htmlFor="latitude">Latitude</label>
-              <input name="latitude" id="latitude" required></input>
+              <input 
+                type="number" 
+                name="latitude" 
+                id="latitude" 
+                required 
+                value={latitude}
+                onChange={e => setLatitude(e.target.valeu)}
+              />
             </div>
 
             <div className="input-block">
               <label htmlFor="longitude">Longitude</label>
-              <input name="longitude" id="longitude" required></input>
+              <input 
+                type="number"
+                name="longitude" 
+                id="longitude" 
+                required 
+                value={longitude}
+                onChange={e => setLongitude(e.target.valeu)}
+              />
             </div>
           </div>
 
