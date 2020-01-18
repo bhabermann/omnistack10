@@ -6,6 +6,8 @@ import './App.css'
 import './Sidebar.css'
 import './Main.css'
 
+import DevItem from './components/DevItem'
+
 // Principais conceitos do React
 // Componente: Bloco isolado de html, css e js que não interfere no restante da aplicação.
 // Propriedade: Informações que um componente pai passa pra um componente filho
@@ -14,6 +16,8 @@ import './Main.css'
 // A tag vazia <> é chamada de "fragment" e serve para agrupar vários tags sem ter um tag sendo exibido no navegador
 
 function App() {
+  const [devs, setDevs] = useState([]);
+
   const [github_username, setGithubUsername] = useState('');
   const [techs, setTechs] = useState('');
 
@@ -38,6 +42,16 @@ function App() {
     );
   }, []);
 
+  useEffect(() => {
+    async function loadDevs() {
+      const response = await api.get('/devs');
+
+      setDevs(response.data);
+    }
+
+    loadDevs();
+  }, []);
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -49,6 +63,10 @@ function App() {
     });
 
     console.log(response.data);
+    setGithubUsername('');
+    setTechs('');
+
+    setDevs([...devs, response.data]);
   }
 
   return (
@@ -109,50 +127,9 @@ function App() {
       </aside>
       <main>
         <ul>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/7130275?s=460&v=4" alt="Bruno Habermann"/>
-              <div className="user-info">
-                <strong>Bruno Habermann</strong>
-                <span>.Net, React, SQL Server</span>
-              </div>
-            </header>
-            <p>Bio do github com várias informações aleatórias só pra ficar com textão aqui e ver o comportamento do componente</p>
-            <a href="https://github.com/bhabermann">Acessar perfil do Github</a>
-          </li>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/7130275?s=460&v=4" alt="Bruno Habermann"/>
-              <div className="user-info">
-                <strong>Bruno Habermann</strong>
-                <span>.Net, React, SQL Server</span>
-              </div>
-            </header>
-            <p>Bio do github com várias informações aleatórias só pra ficar com textão aqui e ver o comportamento do componente</p>
-            <a href="https://github.com/bhabermann">Acessar perfil do Github</a>
-          </li>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/7130275?s=460&v=4" alt="Bruno Habermann"/>
-              <div className="user-info">
-                <strong>Bruno Habermann</strong>
-                <span>.Net, React, SQL Server</span>
-              </div>
-            </header>
-            <p>Bio do github com várias informações aleatórias só pra ficar com textão aqui e ver o comportamento do componente</p>
-            <a href="https://github.com/bhabermann">Acessar perfil do Github</a>
-          </li>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/7130275?s=460&v=4" alt="Bruno Habermann"/>
-              <div className="user-info">
-                <strong>Bruno Habermann</strong>
-                <span>.Net, React, SQL Server</span>
-              </div>
-            </header>
-            <p>Bio do github com várias informações aleatórias só pra ficar com textão aqui e ver o comportamento do componente</p>
-            <a href="https://github.com/bhabermann">Acessar perfil do Github</a>
-          </li>
+          {devs.map(dev => (
+            <DevItem key={dev._id} dev={dev} />
+          ))}
         </ul>
       </main>
     </div>
