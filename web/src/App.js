@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import api from './services/api.js'
 
 import './global.css';
 import './App.css'
@@ -37,11 +38,24 @@ function App() {
     );
   }, []);
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const response = await api.post('/devs', {
+      github_username,
+      techs,
+      latitude,
+      longitude
+    });
+
+    console.log(response.data);
+  }
+
   return (
     <div id="app">
       <aside>
         <strong>Cadastrar</strong>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="input-block">
             <label htmlFor="github_username">Usuário do Github</label>
             <input 
@@ -49,7 +63,7 @@ function App() {
               id="github_username" 
               required
               value={github_username}
-              onChange={e => setGithubUsername(e.target.valeu)}              
+              onChange={(e) => {setGithubUsername(e.target.value)}}              
             />
           </div>
 
@@ -60,7 +74,7 @@ function App() {
               id="techs" 
               required
               value={techs}
-              onChange={e => setTechs(e.target.valeu)}
+              onChange={(e) => {setTechs(e.target.value)}}
             />
           </div>
 
@@ -73,7 +87,7 @@ function App() {
                 id="latitude" 
                 required 
                 value={latitude}
-                onChange={e => setLatitude(e.target.valeu)}
+                onChange={(e) => {setLatitude(e.target.value)}}
               />
             </div>
 
@@ -85,7 +99,7 @@ function App() {
                 id="longitude" 
                 required 
                 value={longitude}
-                onChange={e => setLongitude(e.target.valeu)}
+                onChange={(e) => {setLongitude(e.target.value)}}
               />
             </div>
           </div>
