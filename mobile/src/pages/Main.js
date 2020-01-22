@@ -36,13 +36,17 @@ function Main({ navigation }) {
     async function loadDevs() {
         const { latitude, longitude } = currentRegion;
 
+        console.log('currentregion');
         console.log(currentRegion);
 
+        // const response = await api.get(`/search?latitude=${latitude}&longitude=${longitude}&techs=.Net, React`);
         const response = await api.get('/search', {
-            latitude,
-            longitude,
-            techs: '.Net'
-        });
+            params: {
+                latitude,
+                longitude,
+                techs: ".Net"
+            }
+        })
 
         console.log(response.data);
 
@@ -65,12 +69,12 @@ function Main({ navigation }) {
                 initialRegion={currentRegion}
                 style={styles.map}
             >
-                {devs.map(dev => (
+                {devs.map(({location: { coordinates: [longitude, latitude]}, ...dev}) => (
                     <Marker 
                         key={dev._id}
                         coordinate={{ 
-                            longitude: dev.location.coordinate[0],
-                            latitude: dev.location.coordinate[1]
+                            longitude,
+                            latitude
                         }}
                     >
                         <Image 
