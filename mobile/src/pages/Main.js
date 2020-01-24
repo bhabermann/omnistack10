@@ -9,6 +9,7 @@ import api from '../services/api'
 function Main({ navigation }) {
     const [devs, setDevs] = useState([]);
     const [currentRegion, setCurrentRegion] = useState(null);
+    const [techs, setTechs] = useState("");
 
     useEffect(() => {
         async function loadInitialPosition() {
@@ -100,6 +101,8 @@ function Main({ navigation }) {
                     placeholderTextColor="#999"
                     autoCapitalize="words"
                     autoCorrect={false}
+                    value={techs}
+                    onChangeText={text => setTechs(text)}
                 />
 
                 <TouchableOpacity onPress={loadDevs} style={styles.loadButton}>
